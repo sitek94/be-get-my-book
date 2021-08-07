@@ -1,9 +1,15 @@
 import express from "express";
+import { scrapePage } from "./scrape-page";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
+const url =
+  "https://lubimyczytac.pl/ksiazka/4909770/milczacy-przewodnicy-jak-rozumiec-i-doskonalic-swoj-umysl";
+
+app.get("/", async (req, res) => {
+  const book = await scrapePage(url);
+
+  res.json(book);
 });
 
-app.listen(3000);
+app.listen(5000);

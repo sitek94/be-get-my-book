@@ -1,8 +1,5 @@
 import puppeteer, { ElementHandle, Page } from "puppeteer";
 
-const url =
-  "https://lubimyczytac.pl/ksiazka/4909770/milczacy-przewodnicy-jak-rozumiec-i-doskonalic-swoj-umysl";
-
 const lubimyCzytac = {
   title: `//h1[contains(@class, "book__title")]`,
   author: `//span[contains(@class, "author")]`,
@@ -21,24 +18,22 @@ async function scrapeBook(page: Page) {
   return {
     title,
     author,
-    pages: getPagesCount(pages),
+    pages: getPagesNumber(pages),
     tags,
   };
 }
 
-export async function main() {
+export async function scrapePage(url: string) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
 
   const book = await scrapeBook(page);
 
-  console.log(book);
-
   await browser.close();
-}
 
-main();
+  return book;
+}
 
 async function scrapeProperty(page: Page, xpath: string) {
   const [element] = await page.$x(xpath);
@@ -65,10 +60,10 @@ async function getTextValue(element: ElementHandle<Element>) {
 }
 
 /**
- * Extract pages count from the string:
- * "300 str." -> 300
+ * Extract pages number from the string that looks like this: "300 str."
+ * `"300str" -> 300`
  */
-function getPagesCount(str: string): number {
+function getPagesNumber(str: string): number {
   const [numberPart] = str.split(" ");
   return Number(numberPart);
 }
