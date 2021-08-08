@@ -16,9 +16,19 @@ app.use((req, res, next) => {
 });
 
 app.get("/", async (req, res) => {
-  const book = await scrapePage(url);
+  const { url } = req.query;
 
-  res.json(book);
+  // TODO: add validation function or middleware
+  if (!url) {
+    res.status(400).json("Invalid or missing URL");
+  }
+
+  try {
+    const book = await scrapePage(String(url));
+    res.json(book);
+  } catch (error: any) {
+    res.status(400).json(error?.message);
+  }
 });
 
 app.listen(5000);
