@@ -27,7 +27,9 @@ app.get("/", async (req, res) => {
     const book = await scrapePage(String(url));
     res.json(book);
   } catch (error: any) {
-    res.status(400).json(error?.message);
+    res.status(400).send({
+      message: error?.message,
+    });
   }
 });
 
