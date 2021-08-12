@@ -3,7 +3,7 @@ import puppeteer, { ElementHandle, Page } from "puppeteer";
 const lubimyCzytac = {
   title: `//h1[contains(@class, "book__title")]`,
   author: `//span[contains(@class, "author")]`,
-  pages: `//span[contains(@class, "book__pages")]`,
+  pagesCount: `//span[contains(@class, "book__pages")]`,
   tags: `//div[contains(@class, "book__desc")]//a[contains(@class, "tag")]`,
 };
 
@@ -11,14 +11,14 @@ async function scrapeBook(page: Page) {
   const [title, author, pages] = await Promise.all([
     scrapeProperty(page, lubimyCzytac.title),
     scrapeProperty(page, lubimyCzytac.author),
-    scrapeProperty(page, lubimyCzytac.pages),
+    scrapeProperty(page, lubimyCzytac.pagesCount),
   ]);
   const tags = await scrapeProperties(page, lubimyCzytac.tags);
 
   return {
     title,
     author,
-    pages: getPagesNumber(pages),
+    pagesCount: getPagesNumber(pages),
     tags,
   };
 }
