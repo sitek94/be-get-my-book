@@ -1,3 +1,4 @@
+import { Book } from "models";
 import puppeteer, { ElementHandle, Page } from "puppeteer";
 
 const lubimyCzytac = {
@@ -20,7 +21,7 @@ async function scrapeBook(page: Page) {
     author,
     pagesCount: getPagesNumber(pages),
     tags,
-  };
+  } as Book;
 }
 
 export async function scrapePage(url: string) {
