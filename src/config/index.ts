@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 // Load env variables
 dotenv.config();
@@ -20,11 +20,11 @@ export function env(name: string): string {
 
 const config = {
   ENV: process.env.NODE_ENV,
-  PORT: env("PORT"),
-  HOST: env("HOST"),
-  CLIENT_URL: env("CLIENT_URL"),
-  NOTION_TOKEN: env("NOTION_TOKEN"),
-  DATABASE_ID: env("DATABASE_ID"),
+  PORT: env('PORT'),
+  HOST: env('HOST'),
+  CLIENT_URL: env('CLIENT_URL'),
+  NOTION_TOKEN: env('NOTION_TOKEN'),
+  DATABASE_ID: env('DATABASE_ID'),
 };
 
 export default config;

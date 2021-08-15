@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { scrapeBookData } from "../utils/scrape-book-data";
+import { scrapeBookData } from '../utils/scrape-book-data';
 
 /**
  * @route GET /scrape
@@ -10,7 +10,7 @@ export async function getBook(req: Request, res: Response) {
 
   // TODO: add validation function or middleware
   if (!url) {
-    res.status(400).json("Invalid or missing URL");
+    res.status(400).json('Invalid or missing URL');
   }
 
   try {

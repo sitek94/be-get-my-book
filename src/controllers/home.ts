@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 /**
  * Home page
@@ -9,6 +9,6 @@ import { Request, Response } from "express";
 
 export async function index(req: Request, res: Response) {
   res.send({
-    message: "Server is running",
+    message: 'Server is running',
   });
 }

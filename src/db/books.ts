@@ -1,7 +1,7 @@
-import { Client } from "@notionhq/client";
+import { Client } from '@notionhq/client';
 
-import config from "../config";
-import { Book } from "../types/books";
+import config from '../config';
+import { Book } from '../types/books';
 
 // Initializing a client
 const notion = new Client({
@@ -16,10 +16,10 @@ const db = {
       },
       properties: {
         Name: {
-          type: "title",
+          type: 'title',
           title: [
             {
-              type: "text",
+              type: 'text',
               text: {
                 content: title,
               },
@@ -27,10 +27,10 @@ const db = {
           ],
         },
         Author: {
-          type: "rich_text",
+          type: 'rich_text',
           rich_text: [
             {
-              type: "text",
+              type: 'text',
               text: {
                 content: author,
               },
@@ -38,12 +38,12 @@ const db = {
           ],
         },
         Pages: {
-          type: "number",
+          type: 'number',
           number: pagesCount,
         },
         Tags: {
-          type: "multi_select",
-          multi_select: tags.map((tag) => ({
+          type: 'multi_select',
+          multi_select: tags.map(tag => ({
             name: tag,
           })),
         },

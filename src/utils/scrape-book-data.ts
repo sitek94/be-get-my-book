@@ -1,6 +1,6 @@
-import puppeteer, { ElementHandle, Page } from "puppeteer";
+import puppeteer, { ElementHandle, Page } from 'puppeteer';
 
-import { Book } from "../types/books";
+import { Book } from '../types/books';
 
 /**
  * Xpaths to the elements with the book data that can be found on lubimyczytać.pl
@@ -66,9 +66,9 @@ async function getProperties(page: Page, xpath: string) {
  * Extract text value from DOM element
  */
 async function getTextValue(element: ElementHandle<Element>) {
-  const text = await element.getProperty("textContent");
+  const text = await element.getProperty('textContent');
   if (!text) {
-    return "";
+    return '';
   }
   const textValue = await text.jsonValue();
 
@@ -80,6 +80,6 @@ async function getTextValue(element: ElementHandle<Element>) {
  * `"300str" -> 300`
  */
 function getPagesNumber(str: string): number {
-  const [numberPart] = str.split(" ");
+  const [numberPart] = str.split(' ');
   return Number(numberPart);
 }
