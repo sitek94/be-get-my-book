@@ -49,7 +49,7 @@ const db = {
         },
       },
     });
-    console.log(response);
+
     return response;
   },
 };
